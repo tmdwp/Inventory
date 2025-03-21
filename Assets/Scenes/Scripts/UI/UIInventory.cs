@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public CharacterColor equiped;
+    public GameObject origin;
+
+    public Button back;
     void Start()
     {
-        
+        back.onClick.AddListener(UIManager.UiManager.CloseInven);
     }
 
-    // Update is called once per frame
-    void Update()
+   public void SwapEquip(CharacterColor newColor)
     {
-        
+        equiped = newColor;
+    }
+
+    public void UnEquip()
+    {
+        equiped = CharacterColor.White;
     }
 }

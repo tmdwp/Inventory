@@ -25,50 +25,28 @@ public class Player : MonoBehaviour
     public float defense;
     public float critical;
 
+    [Header("Item")]
+    public List<ItemData> inventory;
 
     public CharacterColor color;
     [SerializeField] private Sprite[] skin;
     private SpriteRenderer renderer;
 
-    [Header("Canvas")]
-    public TextMeshProUGUI nameTxt;
-    public TextMeshProUGUI lvTxt;
-    public TextMeshProUGUI goldTxt;
 
-    private static Player _instance;
-    public static Player Instance
+    public Player(string id)
     {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new GameObject("Player").AddComponent<Player>();
-            }
-            return _instance;
-        }
-    }
-
-    private void Awake()
-    {
-        if (_instance == null)
-        {
-            _instance = this;
-        }
+        this.id = id;
+        level = 1;
+        gold = 500;
+        hp = 100;
+        attack = 10;
+        defense = 10;
+        critical = 15;
     }
 
     void Start()
     {
-        if(id == "") id = "NoName";
         renderer = GetComponent<SpriteRenderer>();
-        UpdateStat();
-    }
-
-    public void UpdateStat()
-    {
-        level = gold / 1000;
-        nameTxt.text = id;
-        lvTxt.text = level.ToString();
-        goldTxt.text = gold.ToString();
     }
 
     public void ChangeSkin(CharacterColor change)
