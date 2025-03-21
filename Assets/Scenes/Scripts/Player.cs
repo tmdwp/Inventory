@@ -1,58 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public enum CharacterColor
-{
-    White,
-    Red,
-    Yellow,
-    Green,
-    Blue
-}
-
-public class Player : MonoBehaviour
+public class Player
 {
     public string id;
 
     public int gold;
 
-    [Header("Status")]
-    public int level;
-    public float hp;
-    public float attack;
-    public float defense;
-    public float critical;
+    public int level { get; private set; }
+    public float hp { get; private set; }
+    public float attack { get; private set; }
+    public float defense { get; private set; }
+    public float critical { get; private set; }
 
     [Header("Item")]
     public List<ItemData> inventory;
-
     public CharacterColor color;
-    [SerializeField] private Sprite[] skin;
-    private SpriteRenderer renderer;
+    public ItemSlot equip;
 
-
-    public Player(string id)
+    public Player(string ID, Sprite sprite)
     {
-        this.id = id;
+        id = ID;
         level = 1;
         gold = 500;
-        hp = 100;
-        attack = 10;
-        defense = 10;
-        critical = 15;
+        hp = 100f;
+        attack = 10f;
+        defense = 10f;
+        critical = 15f;
+        inventory = new List<ItemData>();
     }
 
-    void Start()
+
+    public void GetItem(ItemData item)
     {
-        renderer = GetComponent<SpriteRenderer>();
+        inventory.Add(item);
     }
 
-    public void ChangeSkin(CharacterColor change)
+    public void Equip(ItemSlot item)
     {
-        color = change;
-        renderer.sprite = skin[(int)color];
+        if(equip!= null && equip.curItem.name != item.name)
+        {
+            UnEquip();
+            equip = null;
+        }
+        equip = item;
+        equip.isEquip = true;
+        hp += equip.curItem.hp;
+        attack += equip.curItem.attack;
+        defense += equip.curItem.defense;
+        critical += equip.curItem.critical;
+        equip.ActiveEquipped();
+        equip.RefreshSlot();
+        UIManager.UiManager.status.UpdateStatTxt();
+    }
+
+    public void UnEquip()
+    {
+        hp -= equip.curItem.hp;
+        attack -= equip.curItem.attack;
+        defense -= equip.curItem.defense;
+        critical -= equip.curItem.critical;
+        equip.DisactiveEquipped();
+        equip.isEquip = false;
+        equip.RefreshSlot();
+        UIManager.UiManager.status.UpdateStatTxt();
+        equip = null;
     }
 
     public float GetHpFromPlayer(){ return hp;  }

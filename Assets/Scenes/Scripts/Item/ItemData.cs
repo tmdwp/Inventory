@@ -13,5 +13,4 @@ public class ItemData : ScriptableObject
     public CharacterColor color;
     public Sprite sprite;
     public bool equiped;
-    //hp 20 = attack 4 = defense 4 = critical 1
 }

@@ -6,15 +6,18 @@ public class GameManager : MonoBehaviour
 {    public static GameManager Instance { get; private set; }
     [Header("Player Setting")]
     public Player player;
+    public Sprite playerSprite;
     public string id;
+
+    public List<ItemData> itemList;
 
     public void SetData(string id)
     {
-        // Player 생성자 호출해 초기화
-        player = new Player(id);
-        Debug.Log($"플레이어 데이터 초기화: {player.id}, 레벨: {player.level}, 골드: {player.gold}");
-
-        // 각 UI에 데이터 전달
+        player = new Player(id, playerSprite);
+        foreach (ItemData item in itemList) 
+        {
+            player.GetItem(item);
+        }
         UpdateAllUI();
     }
     void Awake()
