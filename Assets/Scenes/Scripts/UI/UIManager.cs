@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject inventory;
+    public GameObject status;
+    public GameObject button;
     // Start is called before the first frame update
     void Start()
     {
-        
+        inventory.SetActive(false);
+        status.SetActive(false);
+        button.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ClickButton()
     {
-        
+        if (button.activeInHierarchy)
+        {
+            button.SetActive(false);
+        }
+        else
+        {
+            button.SetActive(true);
+        }
     }
 }

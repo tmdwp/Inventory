@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum CharacterColor
@@ -21,10 +22,23 @@ public class Player : MonoBehaviour
     [SerializeField] private Sprite[] skin;
     private SpriteRenderer renderer;
 
+    [Header("Canvas")]
+    public TextMeshProUGUI nameTxt;
+    public TextMeshProUGUI lvTxt;
+    public TextMeshProUGUI goldTxt;
+
     void Start()
     {
         if(id == null) id = "NoName";
         renderer = GetComponent<SpriteRenderer>();
+        UpdateStat();
+    }
+
+    public void UpdateStat()
+    {
+        nameTxt.text = id;
+        lvTxt.text = level.ToString();
+        goldTxt.text = gold.ToString();
     }
 
     public void ChangeSkin(CharacterColor change)
