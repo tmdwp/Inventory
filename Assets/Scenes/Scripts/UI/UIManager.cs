@@ -1,17 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject inventory;
-    public GameObject status;
+    private static UIManager _instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new GameObject("UIManager").AddComponent<UIManager>();
+            }
+            return _instance;
+        }
+    }
+
+    public UIInventory inventory;
+    public UIStatus status;
     public GameObject button;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }  
+    }
     void Start()
     {
-        inventory.SetActive(false);
-        status.SetActive(false);
+        inventory.gameObject.SetActive(false);
+        status.gameObject.SetActive(false);
         button.SetActive(true);
     }
 

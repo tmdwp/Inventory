@@ -15,9 +15,17 @@ public enum CharacterColor
 public class Player : MonoBehaviour
 {
     public string id;
-    public int level;
+
     public int gold;
+
+    [Header("Status")]
+    public int level;
     public float hp;
+    public float attack;
+    public float defense;
+    public float critical;
+
+
     public CharacterColor color;
     [SerializeField] private Sprite[] skin;
     private SpriteRenderer renderer;
@@ -27,9 +35,30 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI lvTxt;
     public TextMeshProUGUI goldTxt;
 
+    private static Player _instance;
+    public static Player Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new GameObject("Player").AddComponent<Player>();
+            }
+            return _instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+    }
+
     void Start()
     {
-        if(id == null) id = "NoName";
+        if(id == "") id = "NoName";
         renderer = GetComponent<SpriteRenderer>();
         UpdateStat();
     }
@@ -46,4 +75,9 @@ public class Player : MonoBehaviour
         color = change;
         renderer.sprite = skin[(int)color];
     }
+
+    public float GetHp(){ return hp;  }
+    public float GetAttack() {  return attack; }
+    public float GetDefense() { return defense; }
+    public float GetCritical() { return critical; }
 }
