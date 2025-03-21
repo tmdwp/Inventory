@@ -65,6 +65,7 @@ public class Player : MonoBehaviour
 
     public void UpdateStat()
     {
+        level = gold / 1000;
         nameTxt.text = id;
         lvTxt.text = level.ToString();
         goldTxt.text = gold.ToString();
@@ -76,8 +77,8 @@ public class Player : MonoBehaviour
         renderer.sprite = skin[(int)color];
     }
 
-    public float GetHp(){ return hp;  }
-    public float GetAttack() {  return attack; }
-    public float GetDefense() { return defense; }
-    public float GetCritical() { return critical; }
+    public float GetHpFromPlayer(){ return hp;  }
+    public float GetAttackFromPlayer() {  return attack; }
+    public float GetDefenseFromPlayer() { return defense; }
+    public float GetCriticalFromPlayer() { return critical; }
 }

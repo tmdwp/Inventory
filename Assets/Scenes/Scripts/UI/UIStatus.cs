@@ -16,9 +16,9 @@ public class UIStatus : MonoBehaviour
 
     public void UpdateStatTxt()
     {
-        hp.text = Player.Instance.GetHp().ToString();
-        attack.text = Player.Instance.GetAttack().ToString();
-        defense.text = Player.Instance.GetDefense().ToString();
-        critical.text = Player.Instance.GetCritical().ToString();
+        hp.text = Player.Instance.GetHpFromPlayer().ToString();
+        attack.text = Player.Instance.GetAttackFromPlayer().ToString();
+        defense.text = Player.Instance.GetDefenseFromPlayer().ToString();
+        critical.text = Player.Instance.GetCriticalFromPlayer().ToString();
     }
 }
