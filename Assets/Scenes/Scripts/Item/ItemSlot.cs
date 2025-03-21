@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ItemSlot : MonoBehaviour
 {
-    public ItemData item;
+    public ItemData curItem;
     Image renderer;
     [SerializeField] private Image equippedSlot;
     // Start is called before the first frame update
@@ -13,30 +13,31 @@ public class ItemSlot : MonoBehaviour
     {
         renderer = GetComponent<Image>();
         equippedSlot = GetComponentInChildren<Image>(true);
-        if (item != null)
-        {
-            RefreshSlot();
-        }
-        else gameObject.SetActive(false);
+
+        RefreshSlot();
+    }
+    public void SetItem(ItemData item)
+    {
+        curItem = item;
+        RefreshSlot();
     }
 
     public void RefreshSlot()
     {
-        renderer.sprite = item.sprite;
-        if (item.equiped)
+        if (curItem != null)
         {
-            equippedSlot.gameObject.SetActive(true);
+            renderer.sprite = curItem.sprite;
         }
         else
         {
-            equippedSlot.gameObject.SetActive(false);
+            renderer.sprite = null;
         }
     }
 
     public void OnClick()
     {
-        if (item.equiped) item.equiped = false;
-        else item.equiped = true;
+        if (curItem.equiped) curItem.equiped = false;
+        else curItem.equiped = true;
         RefreshSlot();
     }
 }
