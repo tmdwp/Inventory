@@ -21,7 +21,7 @@ public class Player
     public CharacterColor color;
     public ItemSlot equip;
 
-    public Player(string ID, Sprite sprite)
+    public Player(string ID)
     {
         id = ID;
         level = 1;
@@ -52,6 +52,8 @@ public class Player
         attack += equip.curItem.attack;
         defense += equip.curItem.defense;
         critical += equip.curItem.critical;
+        color = item.curItem.color;
+        GameManager.Instance.skin.ChangeSkin(color);
         equip.ActiveEquipped();
         equip.RefreshSlot();
         UIManager.UiManager.status.UpdateStatTxt();
@@ -66,6 +68,7 @@ public class Player
         equip.DisactiveEquipped();
         equip.isEquip = false;
         equip.RefreshSlot();
+        GameManager.Instance.skin.ChangeSkin(CharacterColor.White);
         UIManager.UiManager.status.UpdateStatTxt();
         equip = null;
     }

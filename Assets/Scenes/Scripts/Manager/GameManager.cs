@@ -8,12 +8,12 @@ public class GameManager : MonoBehaviour
     public Player player;
     public Sprite playerSprite;
     public string id;
-
+    public Change skin;
     public List<ItemData> itemList;
 
     public void SetData(string id)
     {
-        player = new Player(id, playerSprite);
+        player = new Player(id);
         foreach (ItemData item in itemList) 
         {
             player.GetItem(item);
