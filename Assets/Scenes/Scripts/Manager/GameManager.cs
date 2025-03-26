@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Change skin;
     public List<ItemData> itemList;
 
+    //플레이어 데이터 생성
     public void SetData(string id)
     {
         player = new Player(id);
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
         SetData(id);
     }
 
+    //플레이어 관련 UI 갱신
     public void UpdateAllUI()
     {
         if(UIManager.UiManager != null)

@@ -34,12 +34,12 @@ public class Player
     }
 
 
-    public void GetItem(ItemData item)
+    public void GetItem(ItemData item) //아이템 획득
     {
         inventory.Add(item);
     }
 
-    public void Equip(ItemSlot item)
+    public void Equip(ItemSlot item) //장비 장착
     {
         if(equip!= null && equip.curItem.name != item.name)
         {
@@ -59,7 +59,7 @@ public class Player
         UIManager.UiManager.status.UpdateStatTxt();
     }
 
-    public void UnEquip()
+    public void UnEquip() //장비 장착 해제
     {
         hp -= equip.curItem.hp;
         attack -= equip.curItem.attack;
@@ -73,6 +73,7 @@ public class Player
         equip = null;
     }
 
+    //능력치 값 전달
     public float GetHpFromPlayer(){ return hp;  }
     public float GetAttackFromPlayer() {  return attack; }
     public float GetDefenseFromPlayer() { return defense; }

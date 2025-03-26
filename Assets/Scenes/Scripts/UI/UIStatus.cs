@@ -19,7 +19,7 @@ public class UIStatus : MonoBehaviour
         back.onClick.AddListener(UIManager.UiManager.CloseStatus);
     }
 
-    public void UpdateStatTxt()
+    public void UpdateStatTxt() //능력치 출력
     {
         hp.text = GameManager.Instance.player.GetHpFromPlayer().ToString();
         attack.text = GameManager.Instance.player.GetAttackFromPlayer().ToString();

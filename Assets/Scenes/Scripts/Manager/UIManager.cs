@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum WhatOpen
-{
-    None,
-    Inven,
-    Stat
-}
+
 
 public class UIManager : MonoBehaviour
 {
@@ -34,7 +29,7 @@ public class UIManager : MonoBehaviour
         ResetUI();
     }
 
-    public void ResetUI()
+    public void ResetUI() //UI 활성화 초기화
     {
         mainMenu.gameObject.SetActive(false);
         inventory.gameObject.SetActive(false);
@@ -43,25 +38,25 @@ public class UIManager : MonoBehaviour
         mainMenu.gameObject.SetActive(true);
     }
 
-    public void OpenInven()
+    public void OpenInven() //인벤토리 열기
     {
             inventory.gameObject.SetActive(true);
             mainMenu.CloseButton();
     }
 
 
-    public void OpenStatus()
+    public void OpenStatus() //능력치창 열기
     {
             status.gameObject.SetActive(true);
             mainMenu.CloseButton();
     }
-    public void CloseInven()
+    public void CloseInven() //인벤토리 닫기
     {
         inventory.gameObject.SetActive(false);
         mainMenu.OpenButton();
     }
 
-    public void CloseStatus()
+    public void CloseStatus() //능력치창 닫기
     {
         status.gameObject.SetActive(false);
         mainMenu.OpenButton();

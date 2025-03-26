@@ -10,7 +10,7 @@ public class Change : MonoBehaviour
     {
         renderer = GetComponent<SpriteRenderer>();
     }
-    public void ChangeSkin(CharacterColor color)
+    public void ChangeSkin(CharacterColor color) //착용한 장비 외형 적용
     {
         renderer.sprite = skin[(int)color];
     }
